@@ -56,6 +56,11 @@ const size_t kRXBufferPageSize = 4096;
 	}
 }
 
+-(void *)reallocateInPlace:(void *)allocation fromSize:(size_t)fromSize toSize:(size_t)toSize {
+	self.latestAllocationEnd = self.latestAllocationStart + toSize;
+	return self.latestAllocationStart;
+}
+
 
 -(void)reset {
 	self.allocationCount = 0;
@@ -76,6 +81,19 @@ const size_t kRXBufferPageSize = 4096;
 	return
 		(allocation >= self.bytes)
 	&&	(allocation <= self.latestAllocationStart);
+}
+
+-(bool)canFitReallocationToSize:(size_t)size {
+	size_t spaceForReallocation = self.latestAllocationStart - self.bytes;
+	return spaceForReallocation >= size;
+}
+
+-(bool)canReallocateAllocationInPlace:(void *)allocation fromSize:(size_t)fromSize toSize:(size_t)toSize {
+	bool isSmaller = toSize < fromSize;
+	bool isLatest = allocation == self.latestAllocationStart;
+	return
+		isSmaller
+	||	(isLatest && [self canFitReallocationToSize:toSize]);
 }
 
 @end

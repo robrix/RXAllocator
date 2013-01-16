@@ -10,6 +10,7 @@
 @property (nonatomic, assign) dispatch_queue_t queue;
 
 @property (nonatomic, strong) NSMutableArray *pages;
+@property (nonatomic, strong) RXBufferPage *emptyPage;
 
 @end
 
@@ -28,18 +29,14 @@
 }
 
 
-#pragma mark Synchronized; call off the queue
+#pragma mark Public; synchronized; call off the queue
 
 -(void *)allocate:(size_t)size {
 	NSParameterAssert(size <= kRXBufferPageSize);
 	
 	__block void *allocation = NULL;
 	dispatch_sync(self.queue, ^{
-		RXBufferPage *page =
-			[self bestFittingPageForAllocationOfSize:size]
-		?:	[self addEmptyPage];
-		
-		allocation = [page allocate:size];
+		allocation = [self allocateFromQueue:size];
 	});
 	return allocation;
 }
@@ -47,18 +44,54 @@
 -(void)free:(void *)allocation {
 	__block bool freedAllocationWasAllocatedOnOwnedPage = NO;
 	dispatch_sync(self.queue, ^{
-		RXBufferPage *page = [self pageContainingAllocation:allocation];
-		[page free:allocation];
-		if (page.allocationCount == 0) {
-			[page reset];
-		}
-		freedAllocationWasAllocatedOnOwnedPage = (page != nil);
+		freedAllocationWasAllocatedOnOwnedPage = [self freeFromQueue:allocation];
 	});
 	NSParameterAssert(freedAllocationWasAllocatedOnOwnedPage);
 }
 
+-(void *)reallocate:(void *)allocation fromSize:(size_t)fromSize toSize:(size_t)toSize {
+	NSParameterAssert(toSize <= kRXBufferPageSize);
+	
+	__block void *reallocation = NULL;
+	__block bool reallocatedAllocationWasAllocatedOnOwnedPage = NO;
+	dispatch_sync(self.queue, ^{
+		RXBufferPage *page = [self pageContainingAllocation:allocation];
+		if ([page canReallocateAllocationInPlace:allocation fromSize:fromSize toSize:toSize]) {
+			reallocation = [page reallocateInPlace:allocation fromSize:fromSize toSize:toSize];
+		} else {
+			reallocation = [self allocateFromQueue:toSize];
+			memcpy(reallocation, allocation, fromSize);
+			[self freeFromQueue:allocation onPage:page];
+		}
+		reallocatedAllocationWasAllocatedOnOwnedPage = (page != nil);
+	});
+	NSParameterAssert(reallocatedAllocationWasAllocatedOnOwnedPage);
+	return reallocation;
+}
 
-#pragma mark Unsynchronized; call on the queue
+
+#pragma mark Private; unsynchronized; call on the queue
+
+-(void *)allocateFromQueue:(size_t)size {
+	RXBufferPage *page =
+		[self bestFittingPageForAllocationOfSize:size]
+	?:	[self addEmptyPage];
+	
+	return [page allocate:size];
+}
+
+-(void)freeFromQueue:(void *)allocation onPage:(RXBufferPage *)page {
+	[page free:allocation];
+	if (page.allocationCount == 0) {
+		[page reset]; // fixme: ensure we keep at most one empty page around
+	}
+}
+
+-(bool)freeFromQueue:(void *)allocation {
+	RXBufferPage *page = [self pageContainingAllocation:allocation];
+	[self freeFromQueue:allocation onPage:page];
+	return (page != nil);
+}
 
 -(RXBufferPage *)bestFittingPageForAllocationOfSize:(size_t)size {
 	RXBufferPage *page = nil;
