@@ -140,6 +140,7 @@
 		D4AFE95816A738CD00C34693 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = RX;
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Rob Rix";
 			};
