@@ -10,8 +10,9 @@
 		D4AFE96616A738CD00C34693 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4AFE96516A738CD00C34693 /* Cocoa.framework */; };
 		D4AFE97016A738CD00C34693 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4AFE96E16A738CD00C34693 /* InfoPlist.strings */; };
 		D4AFE97416A738CD00C34693 /* RXBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AFE97316A738CD00C34693 /* RXBuffer.m */; };
-		D4AFE97C16A73B5300C34693 /* RXBufferPage.h in Headers */ = {isa = PBXBuildFile; fileRef = D4AFE97A16A73B5300C34693 /* RXBufferPage.h */; };
+		D4AFE97C16A73B5300C34693 /* RXBufferPage.h in Headers */ = {isa = PBXBuildFile; fileRef = D4AFE97A16A73B5300C34693 /* RXBufferPage.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		D4AFE97D16A73B5300C34693 /* RXBufferPage.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AFE97B16A73B5300C34693 /* RXBufferPage.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D4AFE97E16A74C4A00C34693 /* RXBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = D4AFE97216A738CD00C34693 /* RXBuffer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -106,6 +107,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4AFE97E16A74C4A00C34693 /* RXBuffer.h in Headers */,
 				D4AFE97C16A73B5300C34693 /* RXBufferPage.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
