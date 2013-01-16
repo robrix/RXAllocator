@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D4AFE96616A738CD00C34693 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4AFE96516A738CD00C34693 /* Cocoa.framework */; };
+		D4543C7716A7537200FB77B9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4AFE96A16A738CD00C34693 /* Foundation.framework */; };
 		D4AFE97016A738CD00C34693 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4AFE96E16A738CD00C34693 /* InfoPlist.strings */; };
 		D4AFE98716A751F800C34693 /* RXAllocator.h in Headers */ = {isa = PBXBuildFile; fileRef = D4AFE98316A751F800C34693 /* RXAllocator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D4AFE98816A751F800C34693 /* RXAllocator.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AFE98416A751F800C34693 /* RXAllocator.m */; };
@@ -17,9 +17,6 @@
 
 /* Begin PBXFileReference section */
 		D4AFE96216A738CD00C34693 /* RXAllocator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RXAllocator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D4AFE96516A738CD00C34693 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		D4AFE96816A738CD00C34693 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		D4AFE96916A738CD00C34693 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D4AFE96A16A738CD00C34693 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D4AFE96D16A738CD00C34693 /* RXAllocator-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RXAllocator-Info.plist"; sourceTree = "<group>"; };
 		D4AFE96F16A738CD00C34693 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -35,7 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4AFE96616A738CD00C34693 /* Cocoa.framework in Frameworks */,
+				D4543C7716A7537200FB77B9 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,20 +59,9 @@
 		D4AFE96416A738CD00C34693 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D4AFE96516A738CD00C34693 /* Cocoa.framework */,
-				D4AFE96716A738CD00C34693 /* Other Frameworks */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		D4AFE96716A738CD00C34693 /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				D4AFE96816A738CD00C34693 /* AppKit.framework */,
-				D4AFE96916A738CD00C34693 /* CoreData.framework */,
 				D4AFE96A16A738CD00C34693 /* Foundation.framework */,
 			);
-			name = "Other Frameworks";
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		D4AFE96B16A738CD00C34693 /* RXAllocator */ = {
@@ -87,8 +73,7 @@
 				D4AFE98616A751F800C34693 /* RXAllocatorPage.m */,
 				D4AFE96C16A738CD00C34693 /* Supporting Files */,
 			);
-			name = RXAllocator;
-			path = RXBuffer;
+			path = RXAllocator;
 			sourceTree = "<group>";
 		};
 		D4AFE96C16A738CD00C34693 /* Supporting Files */ = {
@@ -257,8 +242,8 @@
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "RXBuffer/RXAllocator-Prefix.pch";
-				INFOPLIST_FILE = "RXBuffer/RXAllocator-Info.plist";
+				GCC_PREFIX_HEADER = "RXAllocator/RXAllocator-Prefix.pch";
+				INFOPLIST_FILE = "RXAllocator/RXAllocator-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
@@ -272,8 +257,8 @@
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "RXBuffer/RXAllocator-Prefix.pch";
-				INFOPLIST_FILE = "RXBuffer/RXAllocator-Info.plist";
+				GCC_PREFIX_HEADER = "RXAllocator/RXAllocator-Prefix.pch";
+				INFOPLIST_FILE = "RXAllocator/RXAllocator-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
