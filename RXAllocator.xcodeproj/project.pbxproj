@@ -129,7 +129,7 @@
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Rob Rix";
 			};
-			buildConfigurationList = D4AFE95B16A738CD00C34693 /* Build configuration list for PBXProject "RXBuffer" */;
+			buildConfigurationList = D4AFE95B16A738CD00C34693 /* Build configuration list for PBXProject "RXAllocator" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -267,7 +267,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D4AFE95B16A738CD00C34693 /* Build configuration list for PBXProject "RXBuffer" */ = {
+		D4AFE95B16A738CD00C34693 /* Build configuration list for PBXProject "RXAllocator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D4AFE97516A738CD00C34693 /* Debug */,
