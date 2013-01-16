@@ -16,8 +16,8 @@ const size_t kRXBufferPageSize = 4096;
 
 @property (nonatomic, assign, readwrite) NSUInteger allocationCount;
 
-@property (nonatomic, assign) uint8_t *latestAllocationStart;
-@property (nonatomic, assign) uint8_t *latestAllocationEnd;
+@property (nonatomic, assign) void *latestAllocationStart;
+@property (nonatomic, assign) void *latestAllocationEnd;
 
 @end
 
@@ -29,24 +29,37 @@ const size_t kRXBufferPageSize = 4096;
 
 -(instancetype)init {
 	if ((self = [super init])) {
-		_latestAllocationStart = _latestAllocationEnd = self.bytes;
+		[self reset];
 	}
 	return self;
 }
 
 
--(uint8_t *)bytes {
+-(void *)bytes {
 	return object_getIndexedIvars(self);
 }
 
 
 -(void *)allocate:(size_t)size {
-	NSParameterAssert(self.allocatedLength + size <= kRXBufferPageSize);
+	self.allocationCount++;
 	
 	self.latestAllocationStart = self.latestAllocationEnd;
 	self.latestAllocationEnd += size;
 	
 	return self.latestAllocationStart;
+}
+
+-(void)free:(void *)allocation {
+	self.allocationCount--;
+	if (allocation == self.latestAllocationStart) {
+		self.latestAllocationEnd = self.latestAllocationStart;
+	}
+}
+
+
+-(void)reset {
+	self.allocationCount = 0;
+	self.latestAllocationEnd = self.latestAllocationEnd = self.bytes;
 }
 
 
@@ -56,6 +69,13 @@ const size_t kRXBufferPageSize = 4096;
 
 -(NSUInteger)freeLength {
 	return kRXBufferPageSize - self.allocatedLength;
+}
+
+
+-(bool)containsAllocation:(void *)allocation {
+	return
+		(allocation >= self.bytes)
+	&&	(allocation <= self.latestAllocationStart);
 }
 
 @end

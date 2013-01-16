@@ -9,4 +9,6 @@
 -(void *)allocate:(size_t)size; // size must be <= kRXBufferPageSize
 // fixme: that restriction can be removed by allocating a page with a specific size
 
+-(void)free:(void *)allocation;
+
 @end

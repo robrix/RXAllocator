@@ -11,8 +11,13 @@ extern const size_t kRXBufferPageSize;
 @property (nonatomic, assign, readonly) NSUInteger allocationCount;
 
 -(void *)allocate:(size_t)size;
+-(void)free:(void *)allocation;
+
+-(void)reset;
 
 @property (nonatomic, assign, readonly) NSUInteger allocatedLength;
 @property (nonatomic, assign, readonly) NSUInteger freeLength;
+
+-(bool)containsAllocation:(void *)allocation;
 
 @end

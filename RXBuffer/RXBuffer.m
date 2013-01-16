@@ -44,15 +44,37 @@
 	return allocation;
 }
 
+-(void)free:(void *)allocation {
+	__block bool freedAllocationWasAllocatedOnOwnedPage = NO;
+	dispatch_sync(self.queue, ^{
+		RXBufferPage *page = [self pageContainingAllocation:allocation];
+		[page free:allocation];
+		if (page.allocationCount == 0) {
+			[page reset];
+		}
+		freedAllocationWasAllocatedOnOwnedPage = (page != nil);
+	});
+	NSParameterAssert(freedAllocationWasAllocatedOnOwnedPage);
+}
+
 
 #pragma mark Unsynchronized; call on the queue
 
 -(RXBufferPage *)bestFittingPageForAllocationOfSize:(size_t)size {
 	RXBufferPage *page = nil;
 	for (RXBufferPage *each in self.pages) {
-		if (each.freeLength >= size) {
-			if (each.allocatedLength > page.allocatedLength)
-				page = each;
+		if ((each.freeLength >= size) && (each.allocatedLength > page.allocatedLength))
+			page = each;
+	}
+	return page;
+}
+
+-(RXBufferPage *)pageContainingAllocation:(void *)allocation {
+	RXBufferPage *page = nil;
+	for (RXBufferPage *each in self.pages) {
+		if ([each containsAllocation:allocation]) {
+			page = each;
+			break;
 		}
 	}
 	return page;
