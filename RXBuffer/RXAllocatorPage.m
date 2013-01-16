@@ -1,8 +1,8 @@
-//  RXBufferPage.m
+//  RXAllocatorPage.m
 //  Created by Rob Rix on 2013-01-16.
 //  Copyright (c) 2013 Rob Rix. All rights reserved.
 
-#import "RXBufferPage.h"
+#import "RXAllocatorPage.h"
 
 #import <objc/runtime.h>
 
@@ -12,7 +12,7 @@
 
 
 
-@interface RXBufferPage ()
+@interface RXAllocatorPage ()
 
 @property (nonatomic, assign, readwrite) NSUInteger allocationCount;
 
@@ -21,10 +21,10 @@
 
 @end
 
-@implementation RXBufferPage
+@implementation RXAllocatorPage
 
 +(instancetype)pageOfSize:(size_t)size {
-	RXBufferPage *page = class_createInstance(self, size);
+	RXAllocatorPage *page = class_createInstance(self, size);
 	return [page initWithSize:size];
 }
 

@@ -1,4 +1,4 @@
-//  RXBuffer.h
+//  RXAllocator.h
 //  Created by Rob Rix on 2013-01-16.
 //  Copyright (c) 2013 Rob Rix. All rights reserved.
 
@@ -8,13 +8,13 @@
  The optimized size for allocations.
  */
 
-extern const size_t kRXBufferPageSize;
+extern const size_t kRXAllocatorPageSize;
 
 /**
- A buffer allocator which is optimized for small allocations (< 1KB) and freeing/reallocating the most recent allocation it has made.
+ A Allocator allocator which is optimized for small allocations (< 1KB) and freeing/reallocating the most recent allocation it has made.
  */
 
-@interface RXBuffer : NSObject
+@interface RXAllocator : NSObject
 
 -(void *)allocate:(size_t)size;
 

@@ -9,25 +9,25 @@
 /* Begin PBXBuildFile section */
 		D4AFE96616A738CD00C34693 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4AFE96516A738CD00C34693 /* Cocoa.framework */; };
 		D4AFE97016A738CD00C34693 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4AFE96E16A738CD00C34693 /* InfoPlist.strings */; };
-		D4AFE97416A738CD00C34693 /* RXBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AFE97316A738CD00C34693 /* RXBuffer.m */; };
-		D4AFE97C16A73B5300C34693 /* RXBufferPage.h in Headers */ = {isa = PBXBuildFile; fileRef = D4AFE97A16A73B5300C34693 /* RXBufferPage.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		D4AFE97D16A73B5300C34693 /* RXBufferPage.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AFE97B16A73B5300C34693 /* RXBufferPage.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		D4AFE97E16A74C4A00C34693 /* RXBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = D4AFE97216A738CD00C34693 /* RXBuffer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D4AFE98716A751F800C34693 /* RXAllocator.h in Headers */ = {isa = PBXBuildFile; fileRef = D4AFE98316A751F800C34693 /* RXAllocator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D4AFE98816A751F800C34693 /* RXAllocator.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AFE98416A751F800C34693 /* RXAllocator.m */; };
+		D4AFE98916A751F800C34693 /* RXAllocatorPage.h in Headers */ = {isa = PBXBuildFile; fileRef = D4AFE98516A751F800C34693 /* RXAllocatorPage.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		D4AFE98A16A751F800C34693 /* RXAllocatorPage.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AFE98616A751F800C34693 /* RXAllocatorPage.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D4AFE96216A738CD00C34693 /* RXBuffer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RXBuffer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4AFE96216A738CD00C34693 /* RXAllocator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RXAllocator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4AFE96516A738CD00C34693 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D4AFE96816A738CD00C34693 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		D4AFE96916A738CD00C34693 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D4AFE96A16A738CD00C34693 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		D4AFE96D16A738CD00C34693 /* RXBuffer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RXBuffer-Info.plist"; sourceTree = "<group>"; };
+		D4AFE96D16A738CD00C34693 /* RXAllocator-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RXAllocator-Info.plist"; sourceTree = "<group>"; };
 		D4AFE96F16A738CD00C34693 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D4AFE97116A738CD00C34693 /* RXBuffer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RXBuffer-Prefix.pch"; sourceTree = "<group>"; };
-		D4AFE97216A738CD00C34693 /* RXBuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RXBuffer.h; sourceTree = "<group>"; };
-		D4AFE97316A738CD00C34693 /* RXBuffer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RXBuffer.m; sourceTree = "<group>"; };
-		D4AFE97A16A73B5300C34693 /* RXBufferPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RXBufferPage.h; sourceTree = "<group>"; };
-		D4AFE97B16A73B5300C34693 /* RXBufferPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RXBufferPage.m; sourceTree = "<group>"; };
+		D4AFE97116A738CD00C34693 /* RXAllocator-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RXAllocator-Prefix.pch"; sourceTree = "<group>"; };
+		D4AFE98316A751F800C34693 /* RXAllocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RXAllocator.h; sourceTree = "<group>"; };
+		D4AFE98416A751F800C34693 /* RXAllocator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RXAllocator.m; sourceTree = "<group>"; };
+		D4AFE98516A751F800C34693 /* RXAllocatorPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RXAllocatorPage.h; sourceTree = "<group>"; };
+		D4AFE98616A751F800C34693 /* RXAllocatorPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RXAllocatorPage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,7 +45,7 @@
 		D4AFE95616A738CD00C34693 = {
 			isa = PBXGroup;
 			children = (
-				D4AFE96B16A738CD00C34693 /* RXBuffer */,
+				D4AFE96B16A738CD00C34693 /* RXAllocator */,
 				D4AFE96416A738CD00C34693 /* Frameworks */,
 				D4AFE96316A738CD00C34693 /* Products */,
 			);
@@ -54,7 +54,7 @@
 		D4AFE96316A738CD00C34693 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D4AFE96216A738CD00C34693 /* RXBuffer.framework */,
+				D4AFE96216A738CD00C34693 /* RXAllocator.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -78,24 +78,25 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		D4AFE96B16A738CD00C34693 /* RXBuffer */ = {
+		D4AFE96B16A738CD00C34693 /* RXAllocator */ = {
 			isa = PBXGroup;
 			children = (
-				D4AFE97216A738CD00C34693 /* RXBuffer.h */,
-				D4AFE97316A738CD00C34693 /* RXBuffer.m */,
-				D4AFE97A16A73B5300C34693 /* RXBufferPage.h */,
-				D4AFE97B16A73B5300C34693 /* RXBufferPage.m */,
+				D4AFE98316A751F800C34693 /* RXAllocator.h */,
+				D4AFE98416A751F800C34693 /* RXAllocator.m */,
+				D4AFE98516A751F800C34693 /* RXAllocatorPage.h */,
+				D4AFE98616A751F800C34693 /* RXAllocatorPage.m */,
 				D4AFE96C16A738CD00C34693 /* Supporting Files */,
 			);
+			name = RXAllocator;
 			path = RXBuffer;
 			sourceTree = "<group>";
 		};
 		D4AFE96C16A738CD00C34693 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D4AFE96D16A738CD00C34693 /* RXBuffer-Info.plist */,
+				D4AFE96D16A738CD00C34693 /* RXAllocator-Info.plist */,
 				D4AFE96E16A738CD00C34693 /* InfoPlist.strings */,
-				D4AFE97116A738CD00C34693 /* RXBuffer-Prefix.pch */,
+				D4AFE97116A738CD00C34693 /* RXAllocator-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -107,17 +108,17 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4AFE97E16A74C4A00C34693 /* RXBuffer.h in Headers */,
-				D4AFE97C16A73B5300C34693 /* RXBufferPage.h in Headers */,
+				D4AFE98716A751F800C34693 /* RXAllocator.h in Headers */,
+				D4AFE98916A751F800C34693 /* RXAllocatorPage.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		D4AFE96116A738CD00C34693 /* RXBuffer */ = {
+		D4AFE96116A738CD00C34693 /* RXAllocator */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D4AFE97716A738CD00C34693 /* Build configuration list for PBXNativeTarget "RXBuffer" */;
+			buildConfigurationList = D4AFE97716A738CD00C34693 /* Build configuration list for PBXNativeTarget "RXAllocator" */;
 			buildPhases = (
 				D4AFE95D16A738CD00C34693 /* Sources */,
 				D4AFE95E16A738CD00C34693 /* Frameworks */,
@@ -128,9 +129,9 @@
 			);
 			dependencies = (
 			);
-			name = RXBuffer;
+			name = RXAllocator;
 			productName = RXBuffer;
-			productReference = D4AFE96216A738CD00C34693 /* RXBuffer.framework */;
+			productReference = D4AFE96216A738CD00C34693 /* RXAllocator.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -154,7 +155,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D4AFE96116A738CD00C34693 /* RXBuffer */,
+				D4AFE96116A738CD00C34693 /* RXAllocator */,
 			);
 		};
 /* End PBXProject section */
@@ -175,8 +176,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4AFE97416A738CD00C34693 /* RXBuffer.m in Sources */,
-				D4AFE97D16A73B5300C34693 /* RXBufferPage.m in Sources */,
+				D4AFE98816A751F800C34693 /* RXAllocator.m in Sources */,
+				D4AFE98A16A751F800C34693 /* RXAllocatorPage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,8 +256,8 @@
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "RXBuffer/RXBuffer-Prefix.pch";
-				INFOPLIST_FILE = "RXBuffer/RXBuffer-Info.plist";
+				GCC_PREFIX_HEADER = "RXBuffer/RXAllocator-Prefix.pch";
+				INFOPLIST_FILE = "RXBuffer/RXAllocator-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
@@ -270,8 +271,8 @@
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "RXBuffer/RXBuffer-Prefix.pch";
-				INFOPLIST_FILE = "RXBuffer/RXBuffer-Info.plist";
+				GCC_PREFIX_HEADER = "RXBuffer/RXAllocator-Prefix.pch";
+				INFOPLIST_FILE = "RXBuffer/RXAllocator-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
@@ -289,13 +290,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D4AFE97716A738CD00C34693 /* Build configuration list for PBXNativeTarget "RXBuffer" */ = {
+		D4AFE97716A738CD00C34693 /* Build configuration list for PBXNativeTarget "RXAllocator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D4AFE97816A738CD00C34693 /* Debug */,
 				D4AFE97916A738CD00C34693 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

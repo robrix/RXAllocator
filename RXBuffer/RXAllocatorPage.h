@@ -1,10 +1,10 @@
-//  RXBufferPage.h
+//  RXAllocatorPage.h
 //  Created by Rob Rix on 2013-01-16.
 //  Copyright (c) 2013 Rob Rix. All rights reserved.
 
 #import <Foundation/Foundation.h>
 
-@interface RXBufferPage : NSObject
+@interface RXAllocatorPage : NSObject
 
 +(instancetype)pageOfSize:(size_t)size;
 

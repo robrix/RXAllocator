@@ -1,27 +1,27 @@
-//  RXBuffer.m
+//  RXAllocator.m
 //  Created by Rob Rix on 2013-01-16.
 //  Copyright (c) 2013 Rob Rix. All rights reserved.
 
-#import "RXBuffer.h"
-#import "RXBufferPage.h"
+#import "RXAllocator.h"
+#import "RXAllocatorPage.h"
 
-const size_t kRXBufferPageSize = 4096;
+const size_t kRXAllocatorPageSize = 4096;
 
-@interface RXBuffer ()
+@interface RXAllocator ()
 
 @property (nonatomic, assign) dispatch_queue_t queue;
 
 @property (nonatomic, strong) NSMutableArray *pages;
-@property (nonatomic, strong) RXBufferPage *emptyPage;
+@property (nonatomic, strong) RXAllocatorPage *emptyPage;
 
 @end
 
-@implementation RXBuffer
+@implementation RXAllocator
 
 -(instancetype)init {
 	if ((self = [super init])) {
 		_pages = [NSMutableArray new];
-		_queue = dispatch_queue_create("com.antitypical.RXBuffer", 0);
+		_queue = dispatch_queue_create("com.antitypical.RXAllocator", 0);
 	}
 	return self;
 }
@@ -53,7 +53,7 @@ const size_t kRXBufferPageSize = 4096;
 	__block void *reallocation = NULL;
 	__block bool reallocatedAllocationWasAllocatedOnOwnedPage = NO;
 	dispatch_sync(self.queue, ^{
-		RXBufferPage *page = [self pageContainingAllocation:allocation];
+		RXAllocatorPage *page = [self pageContainingAllocation:allocation];
 		if ([page canReallocateAllocationInPlace:allocation fromSize:fromSize toSize:toSize]) {
 			reallocation = [page reallocateInPlace:allocation fromSize:fromSize toSize:toSize];
 		} else {
@@ -71,14 +71,14 @@ const size_t kRXBufferPageSize = 4096;
 #pragma mark Private; unsynchronized; call on the queue
 
 -(void *)allocateFromQueue:(size_t)size {
-	RXBufferPage *page =
+	RXAllocatorPage *page =
 		[self bestFittingPageForAllocationOfSize:size]
 	?:	[self addEmptyPageOfSize:size];
 	
 	return [page allocate:size];
 }
 
--(void)freeFromQueue:(void *)allocation onPage:(RXBufferPage *)page {
+-(void)freeFromQueue:(void *)allocation onPage:(RXAllocatorPage *)page {
 	[page free:allocation];
 	if (page.allocationCount == 0) {
 		if (self.emptyPage) {
@@ -91,23 +91,23 @@ const size_t kRXBufferPageSize = 4096;
 }
 
 -(bool)freeFromQueue:(void *)allocation {
-	RXBufferPage *page = [self pageContainingAllocation:allocation];
+	RXAllocatorPage *page = [self pageContainingAllocation:allocation];
 	[self freeFromQueue:allocation onPage:page];
 	return (page != nil);
 }
 
--(RXBufferPage *)bestFittingPageForAllocationOfSize:(size_t)size {
-	RXBufferPage *page = nil;
-	for (RXBufferPage *each in self.pages) {
+-(RXAllocatorPage *)bestFittingPageForAllocationOfSize:(size_t)size {
+	RXAllocatorPage *page = nil;
+	for (RXAllocatorPage *each in self.pages) {
 		if ((each.freeLength >= size) && (each.allocatedLength > page.allocatedLength))
 			page = each;
 	}
 	return page;
 }
 
--(RXBufferPage *)pageContainingAllocation:(void *)allocation {
-	RXBufferPage *page = nil;
-	for (RXBufferPage *each in self.pages) {
+-(RXAllocatorPage *)pageContainingAllocation:(void *)allocation {
+	RXAllocatorPage *page = nil;
+	for (RXAllocatorPage *each in self.pages) {
 		if ([each containsAllocation:allocation]) {
 			page = each;
 			break;
@@ -116,9 +116,9 @@ const size_t kRXBufferPageSize = 4096;
 	return page;
 }
 
-// allocates a page which is a minimum of kRXBufferPageSize
--(RXBufferPage *)addEmptyPageOfSize:(size_t)size {
-	RXBufferPage *page = [RXBufferPage pageOfSize:size < kRXBufferPageSize? kRXBufferPageSize : size];
+// allocates a page which is a minimum of kRXAllocatorPageSize
+-(RXAllocatorPage *)addEmptyPageOfSize:(size_t)size {
+	RXAllocatorPage *page = [RXAllocatorPage pageOfSize:size < kRXAllocatorPageSize? kRXAllocatorPageSize : size];
 	[self.pages addObject:page];
 	return page;
 }
