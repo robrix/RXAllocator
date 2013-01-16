@@ -34,8 +34,6 @@ const size_t kRXBufferPageSize = 4096;
 #pragma mark Public; synchronized; call off the queue
 
 -(void *)allocate:(size_t)size {
-	NSParameterAssert(size <= kRXBufferPageSize);
-	
 	__block void *allocation = NULL;
 	dispatch_sync(self.queue, ^{
 		allocation = [self allocateFromQueue:size];
@@ -52,8 +50,6 @@ const size_t kRXBufferPageSize = 4096;
 }
 
 -(void *)reallocate:(void *)allocation fromSize:(size_t)fromSize toSize:(size_t)toSize {
-	NSParameterAssert(toSize <= kRXBufferPageSize);
-	
 	__block void *reallocation = NULL;
 	__block bool reallocatedAllocationWasAllocatedOnOwnedPage = NO;
 	dispatch_sync(self.queue, ^{
