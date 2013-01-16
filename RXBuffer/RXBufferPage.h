@@ -4,9 +4,9 @@
 
 #import <Foundation/Foundation.h>
 
-extern const size_t kRXBufferPageSize;
-
 @interface RXBufferPage : NSObject
+
++(instancetype)pageOfSize:(size_t)size;
 
 @property (nonatomic, assign, readonly) NSUInteger allocationCount;
 
@@ -15,6 +15,8 @@ extern const size_t kRXBufferPageSize;
 -(void *)reallocateInPlace:(void *)allocation fromSize:(size_t)fromSize toSize:(size_t)toSize;
 
 -(void)reset;
+
+@property (nonatomic, assign, readonly) size_t size;
 
 @property (nonatomic, assign, readonly) NSUInteger allocatedLength;
 @property (nonatomic, assign, readonly) NSUInteger freeLength;

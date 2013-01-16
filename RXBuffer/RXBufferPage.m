@@ -10,7 +10,7 @@
 #error This file cannot be compiled with ARC due to its reliance on class_createInstance and object_getIndexedIvars.
 #endif
 
-const size_t kRXBufferPageSize = 4096;
+
 
 @interface RXBufferPage ()
 
@@ -23,12 +23,14 @@ const size_t kRXBufferPageSize = 4096;
 
 @implementation RXBufferPage
 
-+(instancetype)allocWithZone:(NSZone *)zone {
-	return class_createInstance(self, kRXBufferPageSize);
++(instancetype)pageOfSize:(size_t)size {
+	RXBufferPage *page = class_createInstance(self, size);
+	return [page initWithSize:size];
 }
 
--(instancetype)init {
+-(instancetype)initWithSize:(size_t)size {
 	if ((self = [super init])) {
+		_size = size;
 		[self reset];
 	}
 	return self;
@@ -73,7 +75,7 @@ const size_t kRXBufferPageSize = 4096;
 }
 
 -(NSUInteger)freeLength {
-	return kRXBufferPageSize - self.allocatedLength;
+	return self.size - self.allocatedLength;
 }
 
 

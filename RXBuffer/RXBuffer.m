@@ -5,6 +5,8 @@
 #import "RXBuffer.h"
 #import "RXBufferPage.h"
 
+const size_t kRXBufferPageSize = 4096;
+
 @interface RXBuffer ()
 
 @property (nonatomic, assign) dispatch_queue_t queue;
@@ -75,7 +77,7 @@
 -(void *)allocateFromQueue:(size_t)size {
 	RXBufferPage *page =
 		[self bestFittingPageForAllocationOfSize:size]
-	?:	[self addEmptyPage];
+	?:	[self addEmptyPageOfSize:size];
 	
 	return [page allocate:size];
 }
@@ -118,12 +120,11 @@
 	return page;
 }
 
--(RXBufferPage *)addEmptyPage {
-	RXBufferPage *page = [RXBufferPage new];
+// allocates a page which is a minimum of kRXBufferPageSize
+-(RXBufferPage *)addEmptyPageOfSize:(size_t)size {
+	RXBufferPage *page = [RXBufferPage pageOfSize:size < kRXBufferPageSize? kRXBufferPageSize : size];
 	[self.pages addObject:page];
 	return page;
 }
 
 @end
-
-
