@@ -5,7 +5,7 @@
 #import <Foundation/Foundation.h>
 
 /**
- A buffer allocator which is optimized for freeing/reallocating the most recent allocation it has made.
+ A buffer allocator which is optimized for small allocations (< 1KB) and freeing/reallocating the most recent allocation it has made.
  */
 
 @interface RXBuffer : NSObject

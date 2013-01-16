@@ -83,7 +83,12 @@
 -(void)freeFromQueue:(void *)allocation onPage:(RXBufferPage *)page {
 	[page free:allocation];
 	if (page.allocationCount == 0) {
-		[page reset]; // fixme: ensure we keep at most one empty page around
+		if (self.emptyPage) {
+			[self.pages removeObject:page];
+		} else {
+			[page reset];
+			self.emptyPage = page;
+		}
 	}
 }
 
